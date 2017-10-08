@@ -1,4 +1,4 @@
-FROM    centos:7
+FROM    joramk/el7-base
 MAINTAINER joramk@gmail.com
 ENV     container docker
 
