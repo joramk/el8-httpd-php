@@ -21,14 +21,6 @@ setup() {
                 echo "TraceEnable Off" >>/etc/httpd/conf/httpd.conf
         fi
 
-        if [ ! -z "$PMA_FORCESSL" ]; then
-                sed -i 's/\?>/$cfg['ForceSSL'] = true;\n\?>/g' /etc/phpMyAdmin/config.inc.php
-        fi
-
-        if [ ! -z "$PMA_DBHOST" ]; then
-                sed -i "s/localhost/$PMA_DBHOST/g" /etc/phpMyAdmin/config.inc.php
-        fi
-
         if [ ! -z "$TIMEZONE" ]; then
                 echo "date.timezone = $TIMEZONE" >>/etc/php.ini
                 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
