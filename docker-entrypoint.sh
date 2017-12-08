@@ -25,6 +25,10 @@ setup() {
                 echo "date.timezone = $TIMEZONE" >>/etc/php.ini
                 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
         fi
+
+        if [ ! -z "$LANGUAGE" ]; then
+                localedef -i $LANGUAGE -f UTF-8 ${LANGUAGE}.UTF-8
+        fi
 }
 
 if [ -e /firstrun ] && [ -z "$HTTPD_OMIT_FIRSTRUN" ]; then
