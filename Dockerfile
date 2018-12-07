@@ -10,7 +10,7 @@ LABEL   name="CentOS 7 - Latest Apache / PHP stable / phpMyAdmin" \
 
 RUN {   curl https://repo.codeit.guru/codeit.el7.repo >/etc/yum.repos.d/codeit.el7.repo; \
         yum install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm -y; \
-	yum-config-manager --enable remi-php71 --enable remi; \
+	yum-config-manager --enable remi-php73 --enable remi; \
         yum install httpd openssl logrotate \
 	php php-json php-cli php-pecl-http \
         php-mbstring php-mysqlnd php-gd php-xml \
