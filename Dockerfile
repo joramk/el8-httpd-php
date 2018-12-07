@@ -15,7 +15,7 @@ RUN {   curl https://repo.codeit.guru/codeit.el7.repo >/etc/yum.repos.d/codeit.e
 	php php-json php-cli php-pecl-http \
         php-mbstring php-mysqlnd php-gd php-xml \
         php-bcmath runtime php-common php-pdo \
-        php-process php-tidy -y; \
+        php-process php-tidy php-soap -y; \
         yum clean all; rm -rf /var/cache/yum; \
 }
 
