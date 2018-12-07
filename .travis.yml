@@ -4,8 +4,8 @@ services:
   - docker
 
 before_install:
-- docker build -t joramk/el7-httpd-php:latest .
-- docker run --name el7_httpd_php --tmpfs /run --tmpfs /tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -d joramk/el7-httpd-php:latest
+- docker build -t joramk/el7-httpd-php:7.3 .
+- docker run --name el7_httpd_php --tmpfs /run --tmpfs /tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro -d joramk/el7-httpd-php:7.3
 
 script:
 - while sleep 5; do docker top el7_httpd_php ; docker logs el7_httpd_php ; docker ps -a | grep ago ; if [ `docker ps -a | grep '(unhealthy)' | wc -l` != "0" ]; then exit 1; fi ; if [ `docker ps -a | grep '(healthy)' | wc -l` != "0" ]; then exit 0; fi ; if [ `docker ps -a | grep 'starting)' | wc -l` == "0" ]; then exit 1; fi ; done
