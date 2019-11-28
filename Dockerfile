@@ -9,7 +9,7 @@ LABEL   name="CentOS 8 - Latest Apache / Latest PHP" \
         maintainer="joramk@gmail.com"
 
 RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
-	yum-config-manager --enable remi-php74 --enable remi; \
+	yum repolist --enablerepo=remi-php74 --enablerepo=remi; \
         yum install httpd openssl logrotate \
 	php php-json php-cli php-pecl-http \
         php-mbstring php-mysqlnd php-gd php-xml \
