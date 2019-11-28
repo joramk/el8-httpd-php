@@ -1,11 +1,11 @@
-FROM    joramk/el7-base
+FROM    joramk/el8-base
 MAINTAINER joramk@gmail.com
 ENV     container docker
 
-LABEL   name="CentOS 7 - Latest Apache / PHP stable / phpMyAdmin" \
-        vendor="https://github.com/joramk/el7-httpd-php" \
+LABEL   name="CentOS 8 - Latest Apache / PHP stable / phpMyAdmin" \
+        vendor="https://github.com/joramk/el8-httpd-php" \
         license="none" \
-        build-date="20171008" \
+        build-date="20191128" \
         maintainer="joramk@gmail.com"
 
 RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm -y; \
