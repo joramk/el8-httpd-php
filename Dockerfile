@@ -8,14 +8,15 @@ LABEL   name="CentOS 8 - Latest Apache / Latest PHP" \
         build-date="20191128" \
         maintainer="joramk@gmail.com"
 
-RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
-	yum repolist --enablerepo=remi-php74 --enablerepo=remi; \
-        yum install httpd openssl logrotate \
+RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
+	dnf repolist --enablerepo=remi; \
+	dnf module reset php && dnf module install php:remi-7.4 \
+        dnf install httpd openssl logrotate \
 	php php-json php-cli php-pecl-http \
         php-mbstring php-mysqlnd php-gd php-xml \
         php-bcmath runtime php-common php-pdo \
         php-process php-tidy php-soap -y; \
-        yum clean all; rm -rf /var/cache/yum; \
+        dnf clean all; rm -rf /var/cache/yum; \
 }
 
 COPY    ./docker-entrypoint.sh /
