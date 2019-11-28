@@ -3,7 +3,7 @@ MAINTAINER joramk@gmail.com
 ENV     container docker
 
 LABEL   name="CentOS 8 - Latest Apache / PHP 7.2 / phpMyAdmin" \
-        vendor="https://github.com/joramk/el7-httpd-php" \
+        vendor="https://github.com/joramk/el8-httpd-php" \
         license="none" \
         build-date="20191128" \
         maintainer="joramk@gmail.com"
