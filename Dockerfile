@@ -8,7 +8,7 @@ LABEL   name="CentOS 8 - Latest Apache / PHP stable / phpMyAdmin" \
         build-date="20191128" \
         maintainer="joramk@gmail.com"
 
-RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm -y; \
+RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
 	yum-config-manager --enable remi-php74 --enable remi; \
         yum install httpd openssl logrotate \
 	php php-json php-cli php-pecl-http \
