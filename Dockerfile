@@ -11,7 +11,7 @@ LABEL   name="CentOS 8 - Latest Apache / Latest PHP" \
 RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
 	dnf repolist --enablerepo=remi; \
 	dnf module reset php && dnf module install php:remi-7.4; \
-        dnf install -y httpd openssl logrotate \
+        dnf install -y cronie httpd openssl logrotate \
 	php php-json php-cli \
         php-mbstring php-mysqlnd php-gd php-xml \
         php-bcmath php-common php-pdo \
