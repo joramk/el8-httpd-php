@@ -2,20 +2,21 @@ FROM    joramk/el8-base
 MAINTAINER joramk@gmail.com
 ENV     container docker
 
-LABEL   name="CentOS 8 - Latest Apache / PHP stable / phpMyAdmin" \
+LABEL   name="CentOS 8 - Latest Apache / PHP 7.3" \
         vendor="https://github.com/joramk/el8-httpd-php" \
         license="none" \
         build-date="20191128" \
         maintainer="joramk@gmail.com"
 
-RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
-	yum-config-manager --enable remi-php73 --enable remi; \
-        yum install httpd openssl logrotate \
-	php php-json php-cli php-pecl-http \
+RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
+	dnf repolist --enablerepo=remi; \
+	dnf module reset php && dnf module install php:remi-7.3; \
+        dnf install -y cronie httpd openssl logrotate \
+	php php-json php-cli \
         php-mbstring php-mysqlnd php-gd php-xml \
-        php-bcmath runtime php-common php-pdo \
-        php-process php-tidy php-soap -y; \
-        yum clean all; rm -rf /var/cache/yum; \
+        php-bcmath php-common php-pdo \
+        php-process php-soap; \
+        dnf clean all; rm -rf /var/cache/yum; \
 }
 
 COPY    ./docker-entrypoint.sh /
