@@ -2,13 +2,13 @@ FROM    joramk/el8-base
 MAINTAINER joramk@gmail.com
 ENV     container docker
 
-LABEL   name="CentOS 8 - Latest Apache / PHP 7.2 / phpMyAdmin" \
+LABEL   name="CentOS 8 - Latest Apache / PHP 7.2" \
         vendor="https://github.com/joramk/el8-httpd-php" \
         license="none" \
         build-date="20191128" \
         maintainer="joramk@gmail.com"
 
-RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm -y; \
+RUN {   yum install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
 	yum-config-manager --enable remi-php72 --enable remi; \
         yum install httpd openssl logrotate \
 	php php-json php-cli php-pecl-http \
