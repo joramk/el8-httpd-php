@@ -2,7 +2,7 @@ FROM    joramk/el8-base
 MAINTAINER joramk@gmail.com
 ENV     container docker
 
-LABEL   name="CentOS 8 - Latest base Apache / Remi PHP 7.3" \
+LABEL   name="CentOS 8 - Latest base Apache / Remi PHP 7.2" \
         vendor="https://github.com/joramk/el8-httpd-php" \
         license="none" \
         build-date="20200407" \
@@ -10,9 +10,9 @@ LABEL   name="CentOS 8 - Latest base Apache / Remi PHP 7.3" \
 
 RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
 	dnf repolist --enablerepo=remi; \
-	dnf module -y install php:remi-7.3 && \
+	dnf module -y install php:remi-7.2 && \
 	dnf module -y reset php && \
-	dnf module -y enable php:remi-7.3; \
+	dnf module -y enable php:remi-7.2; \
         dnf install -y cronie httpd openssl logrotate \
 	php php-json php-cli \
         php-mbstring php-mysqlnd php-gd php-xml \
