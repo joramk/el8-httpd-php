@@ -2,15 +2,17 @@ FROM    joramk/el8-base
 MAINTAINER joramk@gmail.com
 ENV     container docker
 
-LABEL   name="CentOS 8 - Latest Apache / Latest PHP" \
+LABEL   name="CentOS 8 - Latest base Apache / Remi PHP 7.4" \
         vendor="https://github.com/joramk/el8-httpd-php" \
         license="none" \
-        build-date="20191128" \
+        build-date="20200407" \
         maintainer="joramk@gmail.com"
 
 RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm -y; \
 	dnf repolist --enablerepo=remi; \
-	dnf module reset php && dnf module install php:remi-7.4; \
+	dnf module -y install php:remi-7.4 && \
+	dnf module -y reset php && \
+	dnf module -y enable php:remi-7.4; \
         dnf install -y cronie httpd openssl logrotate \
 	php php-json php-cli \
         php-mbstring php-mysqlnd php-gd php-xml \
