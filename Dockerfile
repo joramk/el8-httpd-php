@@ -29,7 +29,7 @@ RUN {   systemctl enable httpd crond; \
 
 HEALTHCHECK CMD systemctl -q is-active httpd || exit 1
 
-VOLUME  [ "/sys/fs/cgroup", "/var/www" ]
+VOLUME  [ "/sys/fs/cgroup" ]
 
 EXPOSE  80
 STOPSIGNAL SIGRTMIN+3
