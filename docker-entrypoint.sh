@@ -21,7 +21,7 @@ setup() {
                 echo "TraceEnable Off" >>/etc/httpd/conf/httpd.conf
         fi
 
-        if [ ! -z "$TIMEZONE" ]; then
+        if [ ! -z "$TIMEZONE" ] && [ -f "/usr/share/zoneinfo/$TIMEZONE" ]; then
                 echo "date.timezone = $TIMEZONE" >>/etc/php.ini
                 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
         fi
