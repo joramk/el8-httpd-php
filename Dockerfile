@@ -13,7 +13,7 @@ RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm 
 	dnf module -y install php:remi-7.4 && \
 	dnf module -y reset php && \
 	dnf module -y enable php:remi-7.4; \
-        dnf install -y cronie httpd openssl logrotate \
+        dnf install -y cronie httpd openssl logrotate glibc-langpack-en glibc-langpack-de \
 	php php-json php-cli \
         php-mbstring php-mysqlnd php-gd php-xml \
         php-bcmath php-common php-pdo \
@@ -21,17 +21,10 @@ RUN {   dnf install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm 
         dnf clean all; rm -rf /var/cache/yum; \
 }
 
-COPY    ./docker-entrypoint.sh /
-RUN {   systemctl enable httpd crond; \
-        touch /firstrun; \
-        chmod +rx /docker-entrypoint.sh; \
-}
+RUN     systemctl enable httpd crond dnf-automatic.timer
 
 HEALTHCHECK CMD systemctl -q is-active httpd || exit 1
 
-VOLUME  [ “/sys/fs/cgroup”, "/var/www", "/etc/httpd/conf.d" ]
-
 EXPOSE  80
 STOPSIGNAL SIGRTMIN+3
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
-CMD [ "/sbin/init" ]
+CMD ["/sbin/init"]
